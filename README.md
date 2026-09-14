@@ -1,6 +1,6 @@
-# Confluence Page Builder — Complete User Guide (README)
+# JBuilder — Complete User Guide (README)
 
-A single-file, offline HTML tool for visually composing Confluence-style pages and exporting them as clean, self-contained HTML. Everything runs in your browser — no server, no network, no dependencies. Your work is auto-saved to the browser, and the page you build can be downloaded as a standalone `.html` file that works anywhere.
+JBuilder is a single-file, offline HTML tool for visually composing rich pages and exporting them as clean, self-contained HTML. It is an independent, standalone tool with its own set of capabilities. Everything runs in your browser — no server, no network, no dependencies. Your work is auto-saved to the browser, and the page you build can be downloaded as a standalone `.html` file that works anywhere.
 
 ## Table of contents
 
@@ -42,7 +42,7 @@ A single-file, offline HTML tool for visually composing Confluence-style pages a
 
 ## What this tool is
 
-The Confluence Page Builder is a WYSIWYG (what-you-see-is-what-you-get) editor. You compose a document made of a **title** and a **body** of stacked **blocks** (paragraphs, headings, images, tables, panels, columns, list groups, code, and more). When you are happy, you **Download** it as a single HTML file that renders identically to what you designed — with working table-of-contents links, in-page search, and copy-to-clipboard buttons baked in.
+JBuilder is a WYSIWYG (what-you-see-is-what-you-get) editor. You compose a document made of a **title** and a **body** of stacked **blocks** (paragraphs, headings, images, tables, panels, columns, list groups, code, and more). When you are happy, you **Download** it as a single HTML file that renders identically to what you designed — with working table-of-contents links, in-page search, and copy-to-clipboard buttons baked in.
 
 Design goal: **what you see in the editor is exactly what you get in Preview and in the downloaded file.**
 
@@ -140,7 +140,13 @@ Bulleted and numbered lists, with normal nesting.
 
 ### Tables
 
-Editable tables with cell selection. Useful for structured data.
+* Insert a table by choosing the number of **rows**, **columns**, and whether to include a **header row**.
+* Editable cells with cell/column selection for structured data.
+* **Alignment** — set the horizontal alignment of cells/columns from the table toolbar.
+* **Row striping** — toggle alternating row shading for readability.
+* **Header color** — apply a **preset** header color or pick a **custom** color.
+* **Add / remove rows & columns** — grow or shrink the table continuously from the table toolbar while your cursor is inside it.
+* **Scroll thresholds** — set optional vertical/horizontal limits so large tables stay contained with an internal scrollbar instead of overflowing the page (in the editor, Preview, and the downloaded file).
 
 ### Panels / info boxes
 
@@ -149,6 +155,10 @@ Colored callout panels for notes, tips, warnings, etc.
 ### Expand / collapse
 
 A collapsible section with a clickable summary that reveals hidden body content — great for FAQs and long detail.
+
+### Accordion
+
+Multiple stacked collapsible sections in one block — ideal for grouped FAQs or step-by-step detail where each item expands independently.
 
 ### Columns (with header badge)
 
@@ -160,8 +170,9 @@ A collapsible section with a clickable summary that reveals hidden body content 
 
 ### List groups (with badges & swap)
 
-* A bordered, Confluence-style list group. Configure the number of **columns**, **items per group**, an optional **header row**, and optional **badges** on items.
+* A bordered, styled list group. Configure the number of **columns**, **items per group**, an optional **header row**, and optional **badges** on items.
 * Column widths can be set to small / medium / large.
+* The optional **header row** can use a **preset** color or a **custom** color (via a color picker).
 * **Swap** — flips the position of the badge and the text (badge-left vs badge-right) for the items. **Swap is scoped to the individual inline list/column your cursor is in** — in a multi-column list group it only flips the badges of that one selected column, leaving the other columns (and any other list groups on the page) untouched. Click into the specific column first, then swap.
 * **Edit** re-opens the configuration dialog and preserves your existing item text, badges, and badge-side while applying the new layout.
 * Each group must keep at least one item.
@@ -238,7 +249,7 @@ The downloaded `.html` is fully standalone and includes:
 * Embedded images/backgrounds (no external files needed).
 * Links normalized: external links open in a new tab with a safe `rel`; anchor links scroll in-page.
 
-Because everything is inlined, the file works offline and can be shared as a single attachment or pasted into Confluence.
+Because everything is inlined, the file works offline and can be opened in any browser, shared as a single attachment, or hosted on any website.
 
 ## Keyboard & interaction tips
 
