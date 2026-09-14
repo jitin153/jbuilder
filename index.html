@@ -385,6 +385,10 @@
     <button class="tbtn" type="button" data-cmd="undo" title="Undo">&#8630;</button>
     <button class="tbtn" type="button" data-cmd="redo" title="Redo">&#8631;</button>
   </div>
+  <span class="sep"></span>
+  <div class="grp">
+    <button class="tbtn" type="button" id="btnPasteComp" title="Paste copied component">&#128203; Paste</button>
+  </div>
 </div>
 </div>
 
@@ -425,14 +429,77 @@
   <button type="button" data-tt="delRow" class="danger" title="Delete row">&#10005; Row</button>
   <button type="button" data-tt="delCol" class="danger" title="Delete column">&#10005; Col</button>
   <span class="tsep"></span>
-  <button type="button" data-tt="props" title="Edit table properties">&#9998;</button>
-  <button type="button" data-tt="delTable" class="danger" title="Delete table">&#128465;</button>
+  <button type="button" data-tt="props" title="Edit">&#9998;</button>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-tt="delTable" class="danger" title="Delete">&#128465;</button>
 </div>
 <div class="float-tools" id="accordionTools">
-  <span class="tlabel">Accordion</span>
-  <button type="button" data-at="toggle" title="Expand / collapse">&#9656; Toggle</button>
-  <button type="button" data-at="add" title="Add section">&#65291; Section</button>
-  <button type="button" data-at="remove" class="danger" title="Remove section">&#10005; Section</button>
+  <span class="tlabel">Section</span>
+  <span class="tgrp"><button type="button" data-at="add" title="Add section">&#65291;</button><button type="button" data-at="remove" class="danger" title="Remove section">&#10005;</button><button type="button" data-at="toggle" title="Expand / collapse">&#9656;</button></span>
+  <span class="tsep"></span>
+  <span class="tlabel" style="letter-spacing:0;text-transform:none">Align</span>
+  <span class="tgrp"><button type="button" data-aalign="left" title="Align every section header left">L</button><button type="button" data-aalign="center" title="Align every section header center">C</button><button type="button" data-aalign="right" title="Align every section header right">R</button></span>
+  <span class="tsep"></span>
+  <span class="tlabel" style="letter-spacing:0;text-transform:none">Header</span>
+  <span class="tdrop"><button type="button" class="tdrop-btn" title="Header color (this section only)">&#127912;</button><span class="tdrop-menu">
+    <button type="button" class="lgsw sw-grey" data-ahcolor="grey" title="Grey header"></button>
+    <button type="button" class="lgsw sw-blue" data-ahcolor="blue" title="Blue header"></button>
+    <button type="button" class="lgsw sw-green" data-ahcolor="green" title="Green header"></button>
+    <button type="button" class="lgsw sw-yellow" data-ahcolor="yellow" title="Yellow header"></button>
+    <button type="button" class="lgsw sw-red" data-ahcolor="red" title="Red header"></button>
+    <button type="button" class="lgsw sw-purple" data-ahcolor="purple" title="Purple header"></button>
+    <input type="color" data-ahcustom value="#deebff" title="Custom header color (this section only)" style="width:20px;height:20px;min-width:0;padding:0;border:1px solid rgba(9,30,66,.25);border-radius:4px;cursor:pointer;flex:0 0 auto;background:none">
+  </span></span>
+  <span class="tsep"></span>
+  <span class="tlabel" style="letter-spacing:0;text-transform:none">Label</span>
+  <span class="tgrp"><button type="button" data-eb="add" title="Add label (max 30 chars)">&#65291;</button><button type="button" data-eb="del" class="danger" title="Remove label">&#10005;</button></span>
+  <span class="tdrop"><button type="button" class="tdrop-btn" title="Label color">&#127912;</button><span class="tdrop-menu">
+    <button type="button" class="lgsw sw-grey" data-ebcolor="grey" title="Grey"></button>
+    <button type="button" class="lgsw sw-blue" data-ebcolor="blue" title="Blue"></button>
+    <button type="button" class="lgsw sw-green" data-ebcolor="green" title="Green"></button>
+    <button type="button" class="lgsw sw-yellow" data-ebcolor="yellow" title="Yellow"></button>
+    <button type="button" class="lgsw sw-red" data-ebcolor="red" title="Red"></button>
+    <button type="button" class="lgsw sw-purple" data-ebcolor="purple" title="Purple"></button>
+  </span></span>
+  <span class="tgrp"><button type="button" data-ebside="left" title="Label on left side">L</button><button type="button" data-ebside="right" title="Label on right side">R</button></span>
+  <span class="tgrp"><button type="button" data-ebshape="pill" title="Pill shape">PILL</button><button type="button" data-ebshape="round" title="Rounded-corner badge">BADGE</button></span>
+  <span class="tsep"></span>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-at="delacc" class="danger" title="Delete">&#128465;</button>
+</div>
+<div class="float-tools" id="expandTools">
+  <span class="tlabel">Section</span>
+  <span class="tgrp"><button type="button" data-et="toggle" title="Expand / collapse">&#9656;</button></span>
+  <span class="tsep"></span>
+  <span class="tlabel" style="letter-spacing:0;text-transform:none">Align</span>
+  <span class="tgrp"><button type="button" data-ealign="left" title="Align header left">L</button><button type="button" data-ealign="center" title="Align header center">C</button><button type="button" data-ealign="right" title="Align header right">R</button></span>
+  <span class="tsep"></span>
+  <span class="tlabel" style="letter-spacing:0;text-transform:none">Header</span>
+  <span class="tdrop"><button type="button" class="tdrop-btn" title="Header background color">&#127912;</button><span class="tdrop-menu">
+    <button type="button" class="lgsw sw-grey" data-ehcolor="grey" title="Grey header"></button>
+    <button type="button" class="lgsw sw-blue" data-ehcolor="blue" title="Blue header"></button>
+    <button type="button" class="lgsw sw-green" data-ehcolor="green" title="Green header"></button>
+    <button type="button" class="lgsw sw-yellow" data-ehcolor="yellow" title="Yellow header"></button>
+    <button type="button" class="lgsw sw-red" data-ehcolor="red" title="Red header"></button>
+    <button type="button" class="lgsw sw-purple" data-ehcolor="purple" title="Purple header"></button>
+    <input type="color" data-ehcustom value="#deebff" title="Custom header color" style="width:20px;height:20px;min-width:0;padding:0;border:1px solid rgba(9,30,66,.25);border-radius:4px;cursor:pointer;flex:0 0 auto;background:none">
+  </span></span>
+  <span class="tsep"></span>
+  <span class="tlabel" style="letter-spacing:0;text-transform:none">Label</span>
+  <span class="tgrp"><button type="button" data-eb="add" title="Add label (max 30 chars)">&#65291;</button><button type="button" data-eb="del" class="danger" title="Remove label">&#10005;</button></span>
+  <span class="tdrop"><button type="button" class="tdrop-btn" title="Label color">&#127912;</button><span class="tdrop-menu">
+    <button type="button" class="lgsw sw-grey" data-ebcolor="grey" title="Grey"></button>
+    <button type="button" class="lgsw sw-blue" data-ebcolor="blue" title="Blue"></button>
+    <button type="button" class="lgsw sw-green" data-ebcolor="green" title="Green"></button>
+    <button type="button" class="lgsw sw-yellow" data-ebcolor="yellow" title="Yellow"></button>
+    <button type="button" class="lgsw sw-red" data-ebcolor="red" title="Red"></button>
+    <button type="button" class="lgsw sw-purple" data-ebcolor="purple" title="Purple"></button>
+  </span></span>
+  <span class="tgrp"><button type="button" data-ebside="left" title="Label on left side">L</button><button type="button" data-ebside="right" title="Label on right side">R</button></span>
+  <span class="tgrp"><button type="button" data-ebshape="pill" title="Pill shape">PILL</button><button type="button" data-ebshape="round" title="Rounded-corner badge">BADGE</button></span>
+  <span class="tsep"></span>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-et="del" class="danger" title="Delete">&#128465;</button>
 </div>
 <div class="float-tools" id="columnsTools">
   <span class="tlabel">Columns</span>
@@ -457,18 +524,17 @@
   </span>
   <button type="button" data-ct="delbadge" title="Remove header badge">&#10005;</button>
   <span class="tsep"></span>
-  <button type="button" data-ct="del" class="danger" title="Delete columns block">&#128465;</button>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-ct="del" class="danger" title="Delete">&#128465;</button>
 </div>
 <div class="float-tools" id="linkTools">
   <span class="tlabel">Link</span>
-  <button type="button" data-lt="edit" title="Edit link">&#9998; Edit</button>
+  <button type="button" data-lt="edit" title="Edit">&#9998;</button>
   <button type="button" data-lt="open" title="Open in new tab">&#8599; Open</button>
   <button type="button" data-lt="remove" class="danger" title="Remove link">&#10005; Unlink</button>
 </div>
 <div class="float-tools" id="figureTools">
   <span class="tlabel">Image</span>
-  <button type="button" data-ft="edit" title="Edit image">&#9998; Edit</button>
-  <span class="tsep"></span>
   <button type="button" data-ft="cv-img-sm">S</button><button type="button" data-ft="cv-img-md">M</button>
   <button type="button" data-ft="cv-img-lg">L</button><button type="button" data-ft="cv-img-full">Full</button>
   <span class="tsep"></span>
@@ -476,13 +542,17 @@
   <button type="button" data-ft="align-center" title="Center">&#8803;</button>
   <button type="button" data-ft="align-right" title="Right">&#11208;</button>
   <span class="tsep"></span>
-  <button type="button" data-ft="del" class="danger" title="Delete image">&#128465;</button>
+  <button type="button" data-ft="edit" title="Edit">&#9998;</button>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-ft="del" class="danger" title="Delete">&#128465;</button>
 </div>
 <div class="float-tools" id="blockTools">
   <span class="tlabel" id="btLabel">Block</span>
   <select id="btTocNum" title="Table of contents numbering" style="display:none"><option value="none">No numbering</option><option value="decimal">1, 1.1, 1.2</option></select>
   <button type="button" id="btToggle" title="Expand / collapse">&#9656; Toggle</button>
-  <button type="button" id="btDel" class="danger" title="Delete">&#128465; Delete</button>
+  <span class="tsep"></span>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" id="btDel" class="danger" title="Delete">&#128465;</button>
 </div>
 <div class="float-tools" id="listGroupTools">
   <span class="tlabel">List group</span>
@@ -518,8 +588,9 @@
   <button type="button" data-lg="swap" title="Swap badge side (left / right)">&#8646;</button>
   <button type="button" data-lg="delbadge" title="Remove badge from current item">&#10005;</button>
   <span class="tsep"></span>
-  <button type="button" data-lg="edit" title="Edit list group">&#9998;</button>
-  <button type="button" data-lg="del" class="danger" title="Delete list group">&#128465;</button>
+  <button type="button" data-lg="edit" title="Edit">&#9998;</button>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-lg="del" class="danger" title="Delete">&#128465;</button>
 </div>
 
 <div class="float-tools" id="jumboTools">
@@ -556,7 +627,13 @@
     <button type="button" class="lgsw" style="background:#bf2600" data-jtext="#bf2600" title="Red"></button>
   </span></span>
   <span class="tsep"></span>
-  <button type="button" data-jt="del" class="danger" title="Delete jumbotron group">&#128465;</button>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-jt="del" class="danger" title="Delete">&#128465;</button>
+</div>
+<div class="float-tools" id="quoteTools">
+  <span class="tlabel">Quote</span>
+  <button type="button" data-cpy="copy" title="Copy">&#10697;</button>
+  <button type="button" data-qt="del" class="danger" title="Delete">&#128465;</button>
 </div>
 
 <!-- page settings -->
@@ -683,10 +760,47 @@ const COMPONENT_CSS = `
 .cv-badge.purple{background:#eae6ff;color:#403294}.cv-badge.grey{background:#ebecf0;color:#42526e}
 /* expand / accordion */
 .cv-expand{border:1px solid #dfe1e6;border-radius:8px;margin:16px 0;overflow:hidden;background:#fff}
-.cv-expand>summary{cursor:text;padding:12px 16px;font-weight:600;background:#f4f5f7;list-style:none;user-select:text}
+.cv-expand>summary{display:flex;align-items:center;gap:8px;cursor:default;padding:12px 16px;font-weight:600;background:#f4f5f7;list-style:none;user-select:none}
 .cv-expand>summary::-webkit-details-marker{display:none}
-.cv-expand>summary::before{content:"\\25B8";display:inline-block;margin-right:9px;transition:transform .15s;color:#5e6c84}
+.cv-expand>summary::before{display:none}
 .cv-expand[open]>summary::before{transform:rotate(90deg)}
+.cv-expand>summary.eh-grey{background:#ebecf0}
+.cv-expand>summary.eh-blue{background:#deebff}
+.cv-expand>summary.eh-green{background:#e3fcef}
+.cv-expand>summary.eh-yellow{background:#fff0b3}
+.cv-expand>summary.eh-red{background:#ffebe6}
+.cv-expand>summary.eh-purple{background:#eae6ff}
+.cv-expand>summary.ea-left{text-align:left}
+.cv-expand>summary.ea-center{text-align:center}
+.cv-expand>summary.ea-right{text-align:right}
+.cv-exp-chevron{order:1;flex:0 0 auto;display:inline-block;font-size:12px;line-height:1;color:#5e6c84;cursor:pointer;transition:transform .15s;user-select:none}
+.cv-expand[open]>summary .cv-exp-chevron{transform:rotate(90deg)}
+.cv-exp-cap{order:3;flex:0 1 auto;min-width:0;text-align:left;cursor:text;outline:none;user-select:text;overflow-wrap:anywhere}
+.cv-exp-cap:empty:before{content:attr(data-ph);color:#7a869a;font-weight:500}
+.cv-exp-badge{order:5;flex:0 0 auto;display:inline-flex;align-items:center;max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:700;line-height:1.4;padding:2px 11px;border:1px solid #c1c7d0;border-radius:5px;background:#ebecf0;color:#42526e;cursor:text;outline:none;user-select:text}
+.cv-expand>summary{justify-content:flex-start}
+.cv-expand>summary .cv-exp-badge.badge-right{margin-left:auto}
+.cv-expand>summary .cv-exp-badge.badge-left{margin-left:0;order:5}
+.cv-expand>summary.ea-center{justify-content:center;position:relative}
+.cv-expand>summary.ea-center .cv-exp-cap{text-align:center}
+.cv-expand>summary.ea-center .cv-exp-badge{margin:0;position:absolute;top:50%;transform:translateY(-50%)}
+.cv-expand>summary.ea-center .cv-exp-badge.badge-left{left:16px;right:auto}
+.cv-expand>summary.ea-center .cv-exp-badge.badge-right{right:16px;left:auto}
+.cv-expand>summary.ea-right{justify-content:flex-end}
+.cv-expand>summary.ea-right .cv-exp-cap{text-align:right}
+.cv-expand>summary.ea-right .cv-exp-badge.badge-left{order:0;margin-left:0;margin-right:auto}
+.cv-expand>summary.ea-right .cv-exp-badge.badge-right{order:5;margin-left:0;margin-right:0}
+.cv-expand>summary.ea-left~.cv-expand-body{text-align:left}
+.cv-expand>summary.ea-center~.cv-expand-body{text-align:center}
+.cv-expand>summary.ea-right~.cv-expand-body{text-align:right}
+.cv-exp-badge.shp-pill{border-radius:999px}
+.cv-exp-badge.shp-round{border-radius:5px}
+.cv-exp-badge.bg-grey{background:#ebecf0;color:#42526e;border-color:#c1c7d0}
+.cv-exp-badge.bg-blue{background:#deebff;color:#0747a6;border-color:#a6c5f7}
+.cv-exp-badge.bg-green{background:#e3fcef;color:#006644;border-color:#93e0bf}
+.cv-exp-badge.bg-yellow{background:#fff0b3;color:#974f0c;border-color:#f5d572}
+.cv-exp-badge.bg-red{background:#ffebe6;color:#bf2600;border-color:#f5a897}
+.cv-exp-badge.bg-purple{background:#eae6ff;color:#403294;border-color:#c0b6f2}
 .cv-expand .cv-expand-body{padding:14px 16px}
 .cv-expand .cv-expand-body>*:first-child{margin-top:0}
 .cv-accordion{margin:16px 0;border:1px solid #dfe1e6;border-radius:8px;overflow:hidden}
@@ -986,14 +1100,14 @@ document.querySelectorAll('#listMenu [data-list]').forEach(b=>b.addEventListener
 
 /* insert components */
 document.querySelectorAll('#insertMenu [data-ins]').forEach(b=>b.addEventListener('click',async()=>{const t=b.dataset.ins;document.getElementById('insertMenu').classList.remove('open');
-  if(t==='expand')blockInsert('<details class="cv-expand" open><summary>Click to expand</summary><div class="cv-expand-body"><p>Hidden content — add text, lists, images, tables and other components here.</p></div></details><p><br></p>');
-  else if(t==='accordion')blockInsert('<div class="cv-accordion">'+accSection('Section 1','Content for section 1.',true)+accSection('Section 2','Content for section 2.',false)+accSection('Section 3','Content for section 3.',false)+'</div><p><br></p>');
+  if(t==='expand')blockInsert('<details class="cv-expand"><summary><span class="cv-exp-chevron" contenteditable="false">&#9656;</span><span class="cv-exp-cap">Click to expand</span></summary><div class="cv-expand-body"><p>Hidden content — add text, lists, images, tables and other components here.</p></div></details><p><br></p>');
+  else if(t==='accordion')blockInsert('<div class="cv-accordion">'+accSection('Section 1','Content for section 1.',false)+accSection('Section 2','Content for section 2.',false)+accSection('Section 3','Content for section 3.',false)+'</div><p><br></p>');
   else if(t==='columns'){const cfg=await columnsDialog();if(cfg)blockInsert(columnsHTML(cfg));}
   else if(t==='toc')blockInsert('<div class="cv-toc" data-pbs-toc="1" contenteditable="false"><div class="cv-toc-title">Table of contents</div><em style="font-size:12px;color:#7a869a">Links auto-generate in preview &amp; the downloaded page. Click to select &amp; delete.</em></div><p><br></p>');
   else if(t==='listgroup'){const cfg=await listGroupDialog();if(cfg)blockInsert(listGroupHTML(cfg));}
   else if(t==='jumbotron'){const jn=await jumboDialog();if(jn)blockInsert(jumboHTML(jn));}
   else if(t==='searchbar')blockInsert(searchBarHTML());}));
-function accSection(title,body,open){return '<details class="cv-expand"'+(open?' open':'')+'><summary>'+escapeHtml(title)+'</summary><div class="cv-expand-body"><p>'+escapeHtml(body)+'</p></div></details>';}
+function accSection(title,body,open){return '<details class="cv-expand"'+(open?' open':'')+'><summary><span class="cv-exp-chevron" contenteditable="false">&#9656;</span><span class="cv-exp-cap">'+escapeHtml(title)+'</span></summary><div class="cv-expand-body"><p>'+escapeHtml(body)+'</p></div></details>';}
 function columnsHTML(cfg){let cols='';for(let i=0;i<cfg.n;i++)cols+='<div class="cv-col"><p>Column '+(i+1)+'</p></div>';return '<div class="cv-columns cv-cols-border-'+cfg.border+'">'+cols+'</div><p><br></p>';}
 function lgBadge(color,text){const c=color||'grey';return '<span class="cv-lg-badge cv-lg-badge-'+c+'" data-color="'+c+'">'+escapeHtml(text||'Badge')+'</span>';}
 function jumboBtn(text,href){return '<a class="cv-jumbo-btn" data-href="'+(href||'#')+'" href="'+(href||'#')+'">'+escapeHtml(text||'Link')+'</a>';}
@@ -1043,7 +1157,7 @@ listGroupTools.querySelectorAll('[data-lgsize]').forEach(b=>{b.addEventListener(
 listGroupTools.querySelectorAll('[data-lgcolor]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!currentListGroup)return;const col=b.dataset.lgcolor;const n=selNode();const li=(n&&n.closest?n.closest('.cv-lg-item'):null)||currentListGroup.querySelector('.cv-lg-item');if(!li||li.classList.contains('cv-lg-headrow'))return;let bd=li.querySelector('.cv-lg-badge');if(bd){['cv-lg-badge-grey','cv-lg-badge-blue','cv-lg-badge-green','cv-lg-badge-yellow','cv-lg-badge-red','cv-lg-badge-purple'].forEach(x=>bd.classList.remove(x));bd.classList.add('cv-lg-badge-'+col);bd.setAttribute('data-color',col);}else{const tmp=document.createElement('div');tmp.innerHTML=lgBadge(col,'Badge');li.appendChild(tmp.firstChild);}saveRange();scheduleSave();});});
 
 /* ---------- editable expand / accordion titles (4) ---------- */
-editor.addEventListener('click',e=>{const sm=e.target.closest&&e.target.closest('summary');if(!sm||!editor.contains(sm))return;e.preventDefault();const rect=sm.getBoundingClientRect();if(e.clientX-rect.left<32){const d=sm.parentElement;if(d&&d.tagName==='DETAILS'){d.open=!d.open;scheduleSave();}}});
+editor.addEventListener('click',e=>{const sm=e.target.closest&&e.target.closest('summary');if(!sm||!editor.contains(sm))return;if(e.target.closest&&(e.target.closest('.cv-exp-cap')||e.target.closest('.cv-exp-badge')))return;e.preventDefault();const d=sm.parentElement;if(d&&d.tagName==='DETAILS'){d.open=!d.open;scheduleSave();}});
 
 /* ---------- keep TOC flush: no blank/black space above (8) ---------- */
 function normalizeToc(){editor.querySelectorAll('.cv-toc').forEach(t=>{let pv=t.previousElementSibling;while(pv&&pv.nodeName==='P'&&!pv.textContent.trim()&&!pv.querySelector('img,table,hr,figure,iframe')){const rm=pv;pv=pv.previousElementSibling;rm.remove();}});}
@@ -1249,10 +1363,10 @@ function applyTableProps(table,cfg){const wrap=table.closest('.cv-table-wrap')||
 /* ---------- contextual floating toolbars ---------- */
 const tableTools=document.getElementById('tableTools'),accordionTools=document.getElementById('accordionTools'),
       linkTools=document.getElementById('linkTools'),figureTools=document.getElementById('figureTools'),
-      columnsTools=document.getElementById('columnsTools'),blockTools=document.getElementById('blockTools');
+      columnsTools=document.getElementById('columnsTools'),blockTools=document.getElementById('blockTools'),expandTools=document.getElementById('expandTools'),quoteTools=document.getElementById('quoteTools');
 const btLabel=document.getElementById('btLabel'),btToggle=document.getElementById('btToggle'),btDel=document.getElementById('btDel'),btTocNum=document.getElementById('btTocNum');
-let activeCell=null,currentLink=null,currentDetails=null,currentFigure=null,currentColumns=null,currentToc=null,currentBlock=null,currentBlockKind=null,currentListGroup=null,currentJumbo=null,currentHr=null,currentTitleRule=null,tableCtx=null;
-function hideAllTools(){[tableTools,accordionTools,linkTools,figureTools,columnsTools,blockTools,listGroupTools,jumboTools].forEach(t=>t.classList.remove('show'));}
+let activeCell=null,currentLink=null,currentDetails=null,currentFigure=null,currentColumns=null,currentToc=null,currentBlock=null,currentBlockKind=null,currentListGroup=null,currentJumbo=null,currentHr=null,currentTitleRule=null,currentQuote=null,tableCtx=null;
+function hideAllTools(){[tableTools,accordionTools,expandTools,linkTools,figureTools,columnsTools,blockTools,listGroupTools,jumboTools,quoteTools].forEach(t=>t.classList.remove('show'));}
 function selNode(){const s=window.getSelection();if(!s.rangeCount)return null;let n=s.getRangeAt(0).startContainer;return n.nodeType===3?n.parentElement:n;}
 function tocItemsHTML(root,linkIds){var heads=[].slice.call(root.querySelectorAll('h1,h2,h3,h4,h5,h6')).filter(function(h){return !h.closest('[data-pbs-toc]');});var numStyle=(pageSettings&&pageSettings.tocNum)||'none';var items='',i=0,pathLevels=[],pathNums=[];heads.forEach(function(h){var lvl=+h.tagName[1];var href='#';if(linkIds){var id='h-'+(i++)+'-'+slug(h.textContent);h.id=id;href='#'+id;}while(pathLevels.length&&pathLevels[pathLevels.length-1]>lvl){pathLevels.pop();pathNums.pop();}if(pathLevels.length&&pathLevels[pathLevels.length-1]===lvl){pathNums[pathNums.length-1]++;}else{pathLevels.push(lvl);pathNums.push(1);}var num='';if(numStyle!=='none')num='<span class="cv-toc-num">'+pathNums.join('.')+'</span>';items+='<li class="toc-l'+lvl+'"><a href="'+href+'">'+num+escapeHtml(h.textContent||'Untitled')+'</a></li>';});return items||'<li><em>No headings yet</em></li>';}
 function refreshTocLive(){editor.querySelectorAll('.cv-toc').forEach(function(t){t.setAttribute('contenteditable','false');t.innerHTML='<div class="cv-toc-title">Table of contents</div><ul>'+tocItemsHTML(editor,false)+'</ul>';});}
@@ -1267,6 +1381,7 @@ function refreshTools(){
   const codeblock=inEditor?n.closest('.cv-codeblock'):null;
   currentListGroup=inEditor?n.closest('.cv-lg'):null;
   currentJumbo=inEditor?n.closest('.cv-jumbo'):null;
+  currentQuote=inEditor?n.closest('blockquote'):null;
   markBlanks();
   if(currentFigure&&!editor.contains(currentFigure))currentFigure=null;
   if(currentToc&&!editor.contains(currentToc))currentToc=null;
@@ -1281,7 +1396,8 @@ function refreshTools(){
   if(currentListGroup){updateLgHeaderBtn();listGroupTools.classList.add('show');return;}
   if(currentJumbo){jumboTools.classList.add('show');return;}
   if(currentDetails&&currentDetails.closest('.cv-accordion')){accordionTools.classList.add('show');return;}
-  if(currentDetails){showBlock(currentDetails,'expand');return;}
+  if(currentDetails){expandTools.classList.add('show');return;}
+  if(currentQuote){quoteTools.classList.add('show');return;}
   if(codeblock){showBlock(codeblock,'code');return;}
   if(panel){showBlock(panel,'panel');return;}
 }
@@ -1334,9 +1450,19 @@ function tableOp(op){
 /* accordion ops */
 accordionTools.querySelectorAll('[data-at]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!currentDetails)return;const acc=currentDetails.closest('.cv-accordion');
   if(b.dataset.at==='toggle')currentDetails.open=!currentDetails.open;
-  else if(b.dataset.at==='add'){const tmp=document.createElement('div');tmp.innerHTML=accSection('New section','New content.',false);currentDetails.after(tmp.firstChild);}
-  else if(b.dataset.at==='remove'){const sib=acc?acc.querySelectorAll(':scope > details'):null;if(acc&&sib.length<=1){toast('Accordion needs at least one section');return;}currentDetails.remove();hideAllTools();currentDetails=null;}
+  else if(b.dataset.at==='add'){const tmp=document.createElement('div');tmp.innerHTML=accSection('New section','New content.',false);const nd=tmp.firstChild;const csm=currentDetails.querySelector(':scope > summary');const nsm=nd.querySelector(':scope > summary');if(csm&&nsm){['ea-left','ea-center','ea-right','eh-grey','eh-blue','eh-green','eh-yellow','eh-red','eh-purple'].forEach(function(c){if(csm.classList.contains(c))nsm.classList.add(c);});if(csm.style&&csm.style.background)nsm.style.background=csm.style.background;}currentDetails.after(nd);}
+  else if(b.dataset.at==='remove'){const sib=acc?acc.querySelectorAll(':scope > details'):null;if(acc&&sib.length<=1){const p=document.createElement('p');p.innerHTML='<br>';acc.replaceWith(p);}else{currentDetails.remove();}hideAllTools();currentDetails=null;}
+  else if(b.dataset.at==='delacc'){if(acc){const p=document.createElement('p');p.innerHTML='<br>';acc.replaceWith(p);}else{currentDetails.remove();}hideAllTools();currentDetails=null;}
   saveRange();scheduleSave();});});
+/* accordion: align all section headers, color current section only */
+accordionTools.querySelectorAll('[data-aalign]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!currentDetails)return;const acc=currentDetails.closest('.cv-accordion');if(!acc)return;acc.querySelectorAll(':scope > details.cv-expand > summary').forEach(s=>{s.classList.remove('ea-left','ea-center','ea-right');s.classList.add('ea-'+b.dataset.aalign);applyBadgeAutoSide(s);});saveRange();scheduleSave();});});
+accordionTools.querySelectorAll('[data-ahcolor]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{const d=b.closest('.tdrop');if(d)d.classList.remove('open');if(!currentDetails)return;const s=currentDetails.querySelector(':scope > summary');if(!s)return;['eh-grey','eh-blue','eh-green','eh-yellow','eh-red','eh-purple'].forEach(x=>s.classList.remove(x));s.classList.add('eh-'+b.dataset.ahcolor);s.style.background='';saveRange();scheduleSave();});});
+accordionTools.querySelectorAll('[data-ahcustom]').forEach(inp=>{inp.addEventListener('click',e=>e.stopPropagation());inp.addEventListener('input',()=>{if(!currentDetails)return;const s=currentDetails.querySelector(':scope > summary');if(!s)return;['eh-grey','eh-blue','eh-green','eh-yellow','eh-red','eh-purple'].forEach(x=>s.classList.remove(x));s.style.background=inp.value;saveRange();scheduleSave();});inp.addEventListener('change',()=>{const d=inp.closest('.tdrop');if(d)d.classList.remove('open');});});
+/* standalone expand: toggle, delete, align + header color */
+expandTools.querySelectorAll('[data-et]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!currentDetails)return;if(b.dataset.et==='toggle'){currentDetails.open=!currentDetails.open;scheduleSave();}else if(b.dataset.et==='del'){currentDetails.remove();hideAllTools();currentDetails=null;scheduleSave();}});});
+expandTools.querySelectorAll('[data-ealign]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!currentDetails)return;const s=currentDetails.querySelector(':scope > summary');if(!s)return;s.classList.remove('ea-left','ea-center','ea-right');s.classList.add('ea-'+b.dataset.ealign);applyBadgeAutoSide(s);saveRange();scheduleSave();});});
+expandTools.querySelectorAll('[data-ehcolor]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{const d=b.closest('.tdrop');if(d)d.classList.remove('open');if(!currentDetails)return;const s=currentDetails.querySelector(':scope > summary');if(!s)return;['eh-grey','eh-blue','eh-green','eh-yellow','eh-red','eh-purple'].forEach(x=>s.classList.remove(x));s.classList.add('eh-'+b.dataset.ehcolor);s.style.background='';saveRange();scheduleSave();});});
+expandTools.querySelectorAll('[data-ehcustom]').forEach(inp=>{inp.addEventListener('click',e=>e.stopPropagation());inp.addEventListener('input',()=>{if(!currentDetails)return;const s=currentDetails.querySelector(':scope > summary');if(!s)return;['eh-grey','eh-blue','eh-green','eh-yellow','eh-red','eh-purple'].forEach(x=>s.classList.remove(x));s.style.background=inp.value;saveRange();scheduleSave();});inp.addEventListener('change',()=>{const d=inp.closest('.tdrop');if(d)d.classList.remove('open');});});
 
 /* columns ops */
 const colBorderSel=document.getElementById('colBorder');
@@ -1351,7 +1477,36 @@ columnsTools.querySelectorAll('[data-ct]').forEach(b=>{b.addEventListener('mouse
 colBorderSel.addEventListener('mousedown',e=>e.stopPropagation());
 colBorderSel.addEventListener('change',()=>{if(!currentColumns)return;['dashed','plain','thick','none'].forEach(x=>currentColumns.classList.remove('cv-cols-border-'+x));currentColumns.classList.add('cv-cols-border-'+colBorderSel.value);scheduleSave();});
 columnsTools.querySelectorAll('[data-cbcolor]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{if(!currentColumns)return;const cn=selNode();const col=(cn&&cn.closest?cn.closest('.cv-col'):null)||currentColumns.querySelector(':scope > .cv-col');if(!col)return;let bd=col.querySelector(':scope > .cv-col-badge');if(!bd){bd=document.createElement('div');bd.className='cv-col-badge';bd.textContent='Label';col.insertBefore(bd,col.firstChild);}['cb-grey','cb-blue','cb-green','cb-yellow','cb-red','cb-purple'].forEach(x=>bd.classList.remove(x));bd.classList.add('cb-'+b.dataset.cbcolor);saveRange();scheduleSave();});});
-editor.addEventListener('input',function(){editor.querySelectorAll('.cv-col-badge').forEach(function(b){var t=b.textContent||'';if(t.length>30){b.textContent=t.slice(0,30);var r=document.createRange();r.selectNodeContents(b);r.collapse(false);var se=window.getSelection();se.removeAllRanges();se.addRange(r);}});});
+function normalizeExpands(){editor.querySelectorAll('.cv-expand > summary').forEach(function(sm){var badge=sm.querySelector(':scope > .cv-exp-badge');var chev=sm.querySelector(':scope > .cv-exp-chevron');var cap=sm.querySelector(':scope > .cv-exp-cap');if(!cap){cap=document.createElement('span');cap.className='cv-exp-cap';var kids=Array.prototype.slice.call(sm.childNodes);kids.forEach(function(n){if(n===badge||n===chev)return;cap.appendChild(n);});}if(!chev){chev=document.createElement('span');chev.className='cv-exp-chevron';chev.setAttribute('contenteditable','false');chev.textContent='\u25B8';}sm.insertBefore(chev,sm.firstChild);sm.insertBefore(cap,chev.nextSibling);if(badge){sm.appendChild(badge);}});}
+function badgeDefaultSide(sm){return (sm&&sm.classList.contains('ea-right'))?'left':'right';}
+function applyBadgeAutoSide(sm){if(!sm)return;var bd=sm.querySelector(':scope > .cv-exp-badge');if(!bd||bd.dataset.sideExplicit)return;bd.classList.remove('badge-left','badge-right');bd.classList.add('badge-'+badgeDefaultSide(sm));}
+function expBadgeOp(kind,val){if(!currentDetails)return;var sm=currentDetails.querySelector(':scope > summary');if(!sm)return;var bd=sm.querySelector(':scope > .cv-exp-badge');if(kind==='add'){if(!bd){bd=document.createElement('span');bd.className='cv-exp-badge bg-grey shp-round';bd.textContent='Label';sm.appendChild(bd);bd.classList.add('badge-'+badgeDefaultSide(sm));var r=document.createRange();r.selectNodeContents(bd);var se=window.getSelection();se.removeAllRanges();se.addRange(r);editor.focus();}}else if(kind==='del'){if(bd)bd.remove();}else if(kind==='color'){if(!bd)return;['bg-grey','bg-blue','bg-green','bg-yellow','bg-red','bg-purple'].forEach(function(c){bd.classList.remove(c);});bd.classList.add('bg-'+val);}else if(kind==='shape'){if(!bd)return;bd.classList.remove('shp-pill','shp-round');bd.classList.add('shp-'+val);}else if(kind==='side'){if(!bd)return;bd.dataset.sideExplicit='1';bd.classList.remove('badge-left','badge-right');bd.classList.add('badge-'+val);}saveRange();scheduleSave();}
+function wireBadgeTools(tb){if(!tb)return;tb.querySelectorAll('[data-eb]').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault();});b.addEventListener('click',function(){expBadgeOp(b.dataset.eb,null);});});tb.querySelectorAll('[data-ebcolor]').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault();});b.addEventListener('click',function(){var d=b.closest('.tdrop');if(d)d.classList.remove('open');expBadgeOp('color',b.dataset.ebcolor);});});tb.querySelectorAll('[data-ebshape]').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault();});b.addEventListener('click',function(){expBadgeOp('shape',b.dataset.ebshape);});});tb.querySelectorAll('[data-ebside]').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault();});b.addEventListener('click',function(){expBadgeOp('side',b.dataset.ebside);});});}
+wireBadgeTools(expandTools);wireBadgeTools(accordionTools);
+/* universal component copy / paste */
+let componentClip=null;
+function getComponentRoot(){
+  if(currentFigure&&editor.contains(currentFigure))return currentFigure;
+  if(currentToc&&editor.contains(currentToc))return currentToc;
+  if(currentHr&&editor.contains(currentHr))return currentHr;
+  if(activeCell&&editor.contains(activeCell))return activeCell.closest('.cv-table-wrap')||activeCell.closest('table');
+  if(currentColumns&&editor.contains(currentColumns))return currentColumns;
+  if(currentListGroup&&editor.contains(currentListGroup))return currentListGroup;
+  if(currentJumbo&&editor.contains(currentJumbo))return currentJumbo.closest('.cv-jumbo-group')||currentJumbo;
+  if(currentDetails&&editor.contains(currentDetails))return currentDetails.closest('.cv-accordion')||currentDetails;
+  if(currentQuote&&editor.contains(currentQuote))return currentQuote;
+  if(currentBlock&&editor.contains(currentBlock))return currentBlock;
+  return null;
+}
+function copyComponent(){var el=getComponentRoot();if(!el){toast('Select a component first');return;}componentClip=el.outerHTML;}
+function pasteComponent(){if(!componentClip){toast('Copy a component first');return;}if((!selNode()||!editor.contains(selNode()))&&lastRange&&editor.contains(lastRange.commonAncestorContainer)){var _s=window.getSelection();_s.removeAllRanges();_s.addRange(lastRange);}var el=getComponentRoot()||caretBlock();var tmp=document.createElement('div');tmp.innerHTML=componentClip;var node=tmp.firstElementChild;if(!node)return;if(el&&editor.contains(el)){el.after(node);}else{editor.appendChild(node);}if(typeof normalizeExpands==='function')normalizeExpands();if(typeof ensureTrailingP==='function')ensureTrailingP();var r=document.createRange();r.selectNodeContents(node);r.collapse(true);var se=window.getSelection();se.removeAllRanges();se.addRange(r);editor.focus();scheduleSave();}
+document.querySelectorAll('.float-tools [data-cpy]').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault();});b.addEventListener('click',function(){if(b.dataset.cpy==='copy')copyComponent();else pasteComponent();});});
+quoteTools.querySelectorAll('[data-qt]').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault();});b.addEventListener('click',function(){if(!currentQuote)return;if(b.dataset.qt==='del'){var pp=document.createElement('p');pp.innerHTML='<br>';currentQuote.replaceWith(pp);hideAllTools();currentQuote=null;scheduleSave();}});});
+/* caret-based paste target + Ctrl/Cmd+V + global paste button */
+function caretBlock(){var n=selNode();if(!n||!editor.contains(n))return null;var el=n;while(el&&el.parentElement&&el.parentElement!==editor){el=el.parentElement;}return (el&&el.parentElement===editor)?el:null;}
+document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&(e.key==='v'||e.key==='V')){if(componentClip&&editor.contains(document.activeElement||editor)&&selNode()&&editor.contains(selNode())){e.preventDefault();pasteComponent();}}});
+var btnPasteComp=document.getElementById('btnPasteComp');if(btnPasteComp){btnPasteComp.addEventListener('mousedown',function(e){e.preventDefault();});btnPasteComp.addEventListener('click',function(){pasteComponent();});}
+editor.addEventListener('input',function(){editor.querySelectorAll('.cv-col-badge,.cv-exp-badge').forEach(function(b){var t=b.textContent||'';if(t.length>30){b.textContent=t.slice(0,30);var r=document.createRange();r.selectNodeContents(b);r.collapse(false);var se=window.getSelection();se.removeAllRanges();se.addRange(r);}});});
 
 /* link ops */
 linkTools.querySelectorAll('[data-lt]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',async()=>{if(!currentLink)return;const a=currentLink;
@@ -1570,8 +1725,8 @@ function userGuideHTML(){return `<div class="uguide" style="max-height:66vh;over
 <ul>
 <li><strong>Table</strong> &mdash; choose rows, columns and a header row. Once inserted you can set <em>cell/column alignment</em>, toggle <em>row striping</em>, apply a <em>header color</em> (preset or custom) and add/remove rows &amp; columns continuously from the table toolbar. Optional vertical/horizontal <em>scroll thresholds</em> keep large tables contained with an internal scrollbar.</li>
 <li><strong>Columns</strong> &mdash; 1&ndash;4 side-by-side columns with a selectable border style.</li>
-<li><strong>Expand / Collapse</strong> &mdash; a single collapsible section with a title.</li>
-<li><strong>Accordion</strong> &mdash; multiple stacked collapsible sections.</li>
+<li><strong>Expand / Collapse</strong> &mdash; a single collapsible section with a title. It is <em>collapsed by default</em>. Click it to reveal its toolbar, where you can <em>Toggle</em> open/closed, set the header text <em>alignment</em> (L/C/R) and pick a header <em>color</em> (preset or custom).</li>
+<li><strong>Accordion</strong> &mdash; multiple stacked collapsible sections, all <em>closed by default</em>. Each section header can get its own <em>color</em> (preset or custom, applied to the section your cursor is in), while <em>Align all</em> sets the header text alignment consistently across every section.</li>
 <li><strong>Panel</strong> &mdash; info / note / success / warning / error callout boxes.</li>
 <li><strong>Code block</strong> &mdash; syntax-highlighted code with an optional caption and a copy button in the published page.</li>
 <li><strong>Table of contents (TOC)</strong> &mdash; auto-built from the headings on the page; supports numbering styles.</li>
@@ -1631,7 +1786,7 @@ function loadHtml(str){try{const doc=new DOMParser().parseFromString(str,'text/h
     if(mw&&['720px','850px','1100px'].includes(mw)){widthPick.value=mw;sheet.style.maxWidth=mw;}else if(art&&!mw){widthPick.value='full';sheet.style.maxWidth='100%';}
     const bodyBg=doc.body&&doc.body.style&&doc.body.style.background;if(bodyBg){pageSettings.bgColor=bodyBg;applyEditorBg();}
   }else{const b=doc.body||doc.documentElement;const h1=b.querySelector('h1');titleInput.value=(h1?h1.textContent.trim():t.trim())||'Imported page';editor.innerHTML=b.innerHTML;}
-  window.scrollTo({top:0,behavior:'smooth'});toast('Imported — edit and re-download');scheduleSave();}catch(err){toast('Could not read that file');}}
+  normalizeExpands();window.scrollTo({top:0,behavior:'smooth'});toast('Imported — edit and re-download');scheduleSave();}catch(err){toast('Could not read that file');}}
 
 /* new */
 document.getElementById('btnNew').addEventListener('click',async()=>{if(await confirmDialog('Reset page','This clears the title and all content, and removes the saved draft from this browser. This cannot be undone.','Reset',true)){titleInput.value='';titleAlign='left';titleInput.style.textAlign='left';editor.innerHTML='<p><br></p>';try{localStorage.removeItem(LS_KEY);sessionStorage.removeItem(LS_KEY);}catch(e){}caretToBlankEnd();scheduleSave();toast('Page reset');}});
@@ -1649,7 +1804,7 @@ function histState(){return {h:editor.innerHTML,t:titleInput.value};}
 function histSame(a,b){return a&&b&&a.h===b.h&&a.t===b.t;}
 function histPushNow(){if(histLock)return;var st=histState();if(histIdx>=0&&histSame(histStack[histIdx],st))return;histStack=histStack.slice(0,histIdx+1);histStack.push(st);if(histStack.length>120)histStack.shift();histIdx=histStack.length-1;}
 function histSchedule(){if(histLock)return;clearTimeout(histT);histT=setTimeout(histPushNow,400);}
-function histApply(st){histLock=true;try{if(histMO)histMO.disconnect();}catch(e){}editor.innerHTML=st.h;titleInput.value=st.t;titleInput.style.textAlign=titleAlign;markBlanks();ensureTrailingP();try{caretToBlankEnd();}catch(e){}refreshTools();refreshTocLive();scheduleSave();try{if(histMO){histMO.takeRecords();histMO.observe(editor,{childList:true,subtree:true,characterData:true,attributes:true});}}catch(e){}histLock=false;}
+function histApply(st){histLock=true;try{if(histMO)histMO.disconnect();}catch(e){}editor.innerHTML=st.h;titleInput.value=st.t;titleInput.style.textAlign=titleAlign;markBlanks();ensureTrailingP();normalizeExpands();try{caretToBlankEnd();}catch(e){}refreshTools();refreshTocLive();scheduleSave();try{if(histMO){histMO.takeRecords();histMO.observe(editor,{childList:true,subtree:true,characterData:true,attributes:true});}}catch(e){}histLock=false;}
 function doUndo(){clearTimeout(histT);histPushNow();if(histIdx>0){histIdx--;histApply(histStack[histIdx]);}else{toast('Nothing to undo');}}
 function doRedo(){clearTimeout(histT);if(histIdx<histStack.length-1){histIdx++;histApply(histStack[histIdx]);}else{toast('Nothing to redo');}}
 try{var histMO=new MutationObserver(function(){histSchedule();});histMO.observe(editor,{childList:true,subtree:true,characterData:true,attributes:true});}catch(e){}
@@ -1663,7 +1818,8 @@ editor.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();if
     titleAlign=d.a||'left';titleInput.style.textAlign=titleAlign;
     if(d.w){widthPick.value=d.w;sheet.style.maxWidth=d.w==='full'?'100%':d.w;}
     if(d.p&&typeof d.p==='object'){pageSettings=Object.assign({bgColor:'',bgImage:'',bgOpacity:1,tocNum:'decimal',clearExit:false,blockGap:16,titleRule:true},d.p);applyEditorBg();}
-    toast('Draft restored');}}catch(e){}})();
+    normalizeExpands();toast('Draft restored');}}catch(e){}})();
+try{normalizeExpands();}catch(e){}
 applyEditorBg();
 setTimeout(function(){histStack=[];histIdx=-1;histPushNow();},60);
 window.addEventListener('pagehide',function(){if(pageSettings.clearExit){try{localStorage.removeItem(LS_KEY);}catch(e){}}});
