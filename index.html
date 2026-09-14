@@ -32,8 +32,9 @@
   body::before{content:"";position:fixed;inset:0;z-index:0;background-image:var(--pg-bg-img);
        background-size:cover;background-position:center;background-repeat:no-repeat;opacity:var(--pg-bg-op,1);pointer-events:none}
 
+  .topbar{position:sticky;top:0;z-index:40;box-shadow:var(--artifact-shadow)}
   .app-header{display:flex;align-items:center;gap:14px;padding:11px 22px;background:var(--artifact-surface);
-    border-bottom:1px solid var(--artifact-border);position:sticky;top:0;z-index:40;box-shadow:var(--artifact-shadow)}
+    border-bottom:1px solid var(--artifact-border)}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
   .brand .logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--artifact-accent),#2684ff);color:#fff;
     display:grid;place-items:center;font-size:16px;font-weight:800;font-style:italic;box-shadow:0 2px 6px rgba(0,82,204,.35)}
@@ -71,7 +72,7 @@
     background:var(--artifact-surface);color:var(--artifact-text);padding:6px 8px;border-radius:6px;cursor:pointer}
 
   .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:3px;padding:7px 22px;background:var(--artifact-toolbar);
-    border-bottom:1px solid var(--artifact-border);position:sticky;top:52px;z-index:35}
+    border-bottom:1px solid var(--artifact-border)}
   .toolbar .grp{display:flex;align-items:center;gap:2px;padding:0 3px;position:relative}
   .toolbar .sep{width:1px;height:22px;background:var(--artifact-border);margin:0 3px}
   .tbtn{min-width:32px;height:32px;padding:0 8px;border:none;background:transparent;color:var(--artifact-text);
@@ -176,7 +177,8 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   @media (max-width:900px){.toolbar{padding:7px 12px}.app-header{padding:11px 14px}.sheet{padding:40px 36px 50px}}
-  @media (max-width:640px){.sheet{padding:32px 20px 50px}.page-title{font-size:26px}.brand small{display:none}}
+  @media (max-width:640px){.sheet{padding:32px 20px 50px}.page-title{font-size:26px}.brand small{display:none}
+    .topbar{max-height:52vh;overflow-y:auto;-webkit-overflow-scrolling:touch}}
   @media print{.app-header,.toolbar,.overlay,.toast,.float-tools,.preview-full,.cv-tip{display:none !important}
     body{background:#fff}body::before{display:none !important}.canvas{padding:0}.sheet{box-shadow:none;max-width:100%;padding:0;min-height:auto}}
   /* ---- added UI: switch / setting-row ---- */
@@ -220,6 +222,7 @@
 </head>
 <body>
 
+<div class="topbar" data-glean-id="topbar">
 <header class="app-header" data-glean-id="app-header">
   <div class="brand"><span class="logo">J</span>
     <span>JBuilder</span></div>
@@ -382,6 +385,7 @@
     <button class="tbtn" type="button" data-cmd="undo" title="Undo">&#8630;</button>
     <button class="tbtn" type="button" data-cmd="redo" title="Redo">&#8631;</button>
   </div>
+</div>
 </div>
 
 <div class="canvas">
@@ -629,7 +633,7 @@ const COMPONENT_CSS = `
 .cv-content pre.cv-code .cv-lang{position:absolute;top:8px;right:12px;font-size:11px;color:#7f848e;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 .tok-kw{color:#c678dd}.tok-str{color:#98c379}.tok-com{color:#7f848e;font-style:italic}.tok-num{color:#d19a66}.tok-fn{color:#61afef}
 .tok-tag{color:#e06c75}.tok-attr{color:#d19a66}.tok-prop{color:#61afef}.tok-sel{color:#e5c07b}.tok-val{color:#98c379}.tok-key{color:#e06c75}.tok-punc{color:#abb2bf}.tok-bool{color:#56b6c2}
-/* toc — Confluence-style hierarchy */
+/* toc — nested heading hierarchy */
 .cv-toc{background:#f7f8fa;border:1px solid #dfe1e6;border-radius:8px;padding:12px 18px 14px;margin:0 0 18px}
 .cv-toc .cv-toc-title{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#5e6c84;margin:0 0 8px}
 .cv-toc ul{list-style:none;margin:0;padding:0}
@@ -1545,12 +1549,13 @@ document.getElementById('btnDownload').addEventListener('click',async()=>{var de
 /* ---------- more-menu + user guide ---------- */
 (function(){var btnMore=document.getElementById('btnMore'),moreMenu=document.getElementById('moreMenu');if(!btnMore||!moreMenu)return;btnMore.addEventListener('click',function(e){e.stopPropagation();moreMenu.classList.toggle('open');});document.addEventListener('click',function(e){if(moreMenu.classList.contains('open')&&!moreMenu.contains(e.target)&&!btnMore.contains(e.target))moreMenu.classList.remove('open');});document.addEventListener('keydown',function(e){if(e.key==='Escape')moreMenu.classList.remove('open');});moreMenu.querySelectorAll('[data-more]').forEach(function(b){b.addEventListener('click',function(){moreMenu.classList.remove('open');var k=b.dataset.more;if(k==='import')document.getElementById('btnImport').click();else if(k==='source')document.getElementById('btnSource').click();else if(k==='settings')document.getElementById('btnSettings').click();else if(k==='reset')document.getElementById('btnNew').click();else if(k==='guide')openUserGuide();});});})();
 function userGuideHTML(){return `<div class="uguide" style="max-height:66vh;overflow:auto">
-<div class="ug-lead"><strong>JBuilder</strong> is a 100% offline, single-file builder for Confluence-style HTML pages. Design your page visually, preview it, then download a clean standalone <code>.html</code> file you can paste into Confluence or host anywhere. Nothing is uploaded &mdash; everything runs in your browser and your draft is auto-saved locally.</div>
+<div class="ug-lead"><strong>JBuilder</strong> is a 100% offline, single-file HTML page builder &mdash; a standalone tool with its own set of capabilities. Design a rich page visually, preview it exactly as it will export, then download a clean, self-contained <code>.html</code> file you can open in any browser, share as a single attachment, or host on any website. Nothing is uploaded &mdash; everything runs in your browser and your draft is auto-saved locally.</div>
 <h4>1. The basics</h4>
 <ul>
 <li><strong>Page title</strong> &mdash; type it in the large title field at the top of the canvas.</li>
 <li><strong>Editor canvas</strong> &mdash; the white page area. Click anywhere and start typing. Text supports headings, bold, italic, lists, alignment and more from the formatting toolbar.</li>
 <li><strong>Auto-save</strong> &mdash; your work is saved in this browser automatically, so closing and reopening restores your draft. Use <em>Reset page</em> to start over.</li>
+<li><strong>Sticky top bar</strong> &mdash; the header and formatting toolbar stay pinned to the top of the window as you scroll (on desktop and mobile), so Insert and formatting controls are always in reach without scrolling back up.</li>
 </ul>
 <h4>2. Header actions</h4>
 <ul>
@@ -1559,11 +1564,11 @@ function userGuideHTML(){return `<div class="uguide" style="max-height:66vh;over
 <li><strong>More (&#8942;)</strong> &mdash; a menu with <em>Import HTML</em>, <em>View HTML source</em>, <em>Page settings</em>, <em>Reset page</em> and <em>User guide</em>.</li>
 </ul>
 <h4>3. Formatting toolbar</h4>
-<p>Select text or place the cursor, then use the toolbar to apply paragraph/heading styles, bold, italic, underline, strikethrough, text/background color, bulleted and numbered lists, block quotes, alignment, and to insert links.</p>
+<p>Select text or place the cursor, then use the toolbar to apply paragraph/heading styles, bold, italic, underline, strikethrough, text/background color, bulleted and numbered lists, block quotes, alignment, and to insert links. The toolbar also has <strong>Undo</strong> and <strong>Redo</strong> buttons &mdash; or press <kbd>Ctrl/&#8984;+Z</kbd> to undo and <kbd>Ctrl/&#8984;+Y</kbd> (or <kbd>Ctrl/&#8984;+Shift+Z</kbd>) to redo. History covers typing, formatting and adding, removing or editing components.</p>
 <h4>4. Insert components</h4>
 <p>Use the Insert menu to drop rich components into the page:</p>
 <ul>
-<li><strong>Table</strong> &mdash; choose rows, columns, a header row, and optional vertical/horizontal scroll thresholds.</li>
+<li><strong>Table</strong> &mdash; choose rows, columns and a header row. Once inserted you can set <em>cell/column alignment</em>, toggle <em>row striping</em>, apply a <em>header color</em> (preset or custom) and add/remove rows &amp; columns continuously from the table toolbar. Optional vertical/horizontal <em>scroll thresholds</em> keep large tables contained with an internal scrollbar.</li>
 <li><strong>Columns</strong> &mdash; 1&ndash;4 side-by-side columns with a selectable border style.</li>
 <li><strong>Expand / Collapse</strong> &mdash; a single collapsible section with a title.</li>
 <li><strong>Accordion</strong> &mdash; multiple stacked collapsible sections.</li>
@@ -1571,7 +1576,7 @@ function userGuideHTML(){return `<div class="uguide" style="max-height:66vh;over
 <li><strong>Code block</strong> &mdash; syntax-highlighted code with an optional caption and a copy button in the published page.</li>
 <li><strong>Table of contents (TOC)</strong> &mdash; auto-built from the headings on the page; supports numbering styles.</li>
 <li><strong>Jumbotron</strong> &mdash; hero banner(s) with a heading, supporting text and link buttons. Insert 1 (full width, up to 9 links), 2 (1/3 + 2/3), or 3 (each 1/3). Each block has S / M / L sizing, left / center / right alignment, and per-link settings.</li>
-<li><strong>List group</strong> &mdash; a styled list with badges. Badge/text position can be swapped for the selected component.</li>
+<li><strong>List group</strong> &mdash; a styled, bordered list with badges. Configure columns, items per group, an optional header row, column widths (S/M/L) and a <em>header color</em> (preset or a custom color picker). Badge/text position can be swapped for the selected inline column only.</li>
 <li><strong>Search bar</strong> &mdash; a live filter box that searches the page content in the published file.</li>
 <li><strong>Image</strong> &mdash; embed an image (stored inline) with size (S/M/L/Full), alignment, shape (rounded/circle), border and caption.</li>
 <li><strong>Link</strong> &mdash; insert a hyperlink (see Links below).</li>

@@ -91,6 +91,8 @@ The **⋮ More** button opens a labelled context menu containing the secondary a
 
 The old individual header buttons still exist under the hood and are routed by the More menu, so no functionality was lost — the header is just cleaner.
 
+**Sticky top bar:** the header and the formatting toolbar are wrapped in a single bar that stays pinned to the top of the window as you scroll — on desktop and on mobile. This keeps Insert and the formatting controls reachable at all times without scrolling back to the top. On very small screens the bar caps its height and scrolls internally so it never covers the whole viewport.
+
 ### User Guide
 
 The last item in the More menu opens a detailed in-app modal that walks through every feature: the basics, header actions, formatting, all components, inserting between blocks, links and link-buttons, jumbotrons, page settings, and export behavior. This README is the long-form companion to that in-app guide.
